@@ -1,38 +1,24 @@
+import os
 import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
+from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
 
-import os
-#from keras.models import load_model
+# Define model path inside the 'medical_diagnosis' folder
+MODEL_PATH = "/medical_diagnosis/xray_densenet_model2.h5"
 
-# Check current directory
-print("Current Directory:", os.getcwd())
-
-# Define the correct path
-MODEL_PATH = os.path.join(os.getcwd(), "xray_densenet_model2.h5")
-
-# Verify the file exists before loading
+# Check if the model file exists
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
 
-# Load the model
-model = load_model(MODEL_PATH)
-print("Model loaded successfully!")
-
-
 # Load the trained DenseNet model
-#MODEL_PATH = "xray_densenet_model2.h5"
-#model = load_model(MODEL_PATH)
+model = load_model(MODEL_PATH)
 
 # Define image size (must match training size)
 IMG_SIZE = 224  
 
 # Function to preprocess the uploaded image
-from tensorflow.keras.preprocessing.image import img_to_array  # Import here
-
-
 def preprocess_image(img):
     img = img.convert("RGB")  # Ensure 3 channels (RGB)
     img = img.resize((IMG_SIZE, IMG_SIZE))  # Resize
@@ -41,21 +27,11 @@ def preprocess_image(img):
     img_array = img_array / 255.0  # Normalize
     return img_array
 
-
-# def preprocess_image(img_path):
-#     img = image.load_img(img_path, target_size=(IMG_SIZE, IMG_SIZE))  # Load and resize
-#     img_array = image.img_to_array(img)  # Convert to array
-#     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
-#     img_array = img_array / 255.0  # Normalize
-#     return img_array
-
-
 # Function to make predictions
 def predict_xray(img):
     img_array = preprocess_image(img)
     prediction = model.predict(img_array)[0][0]  # Get prediction score
   
-    
     if prediction >= 0.5:
         return "✅ Benign (Non-Cancerous)", 1 - prediction
     else:
