@@ -40,7 +40,7 @@ def predict_xray(img):
 st.set_page_config(page_title="Lung Cancer Detection", page_icon="🩺", layout="centered")
 
 st.title("🩺 Lung Cancer Detection")
-st.write("Upload an X-ray or CT scan to check for **malignant (cancerous)** or **benign (non-cancerous)** tumors.")
+st.write("Upload an CT scan copy of your lungs to check for **malignant (cancerous)** or **benign (non-cancerous)** tumors.")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload an X-ray or CT Image", type=["jpg", "jpeg", "png"])
@@ -64,4 +64,4 @@ if uploaded_file is not None:
     else:
         st.success("✅ No signs of malignancy detected, but regular checkups are advised.")
 
-st.write("🔬 Model powered by **DenseNet121** | Developed by Rohit 🚀")
+st.write(" **Note** : This model is still training. Please consult a doctor in case of an emergency or inaccurate.")
