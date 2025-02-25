@@ -6,11 +6,10 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
 
 # Define model path inside the 'medical_diagnosis' folder
-MODEL_PATH = "/medical_diagnosis/xray_densenet_model2.h5"
-
+MODEL_PATH = "/app/medical_diagnosis/xray_densenet_model2.h5"
 # Check if the model file exists
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
+#if not os.path.exists(MODEL_PATH):
+    #raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
 
 # Load the trained DenseNet model
 model = load_model(MODEL_PATH)
