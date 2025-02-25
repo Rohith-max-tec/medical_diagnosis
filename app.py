@@ -4,9 +4,27 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 
-# Load the trained DenseNet model
-MODEL_PATH = "xray_densenet_model2.h5"
+import os
+#from keras.models import load_model
+
+# Check current directory
+print("Current Directory:", os.getcwd())
+
+# Define the correct path
+MODEL_PATH = os.path.join(os.getcwd(), "xray_densenet_model2.h5")
+
+# Verify the file exists before loading
+if not os.path.exists(MODEL_PATH):
+    raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
+
+# Load the model
 model = load_model(MODEL_PATH)
+print("Model loaded successfully!")
+
+
+# Load the trained DenseNet model
+#MODEL_PATH = "xray_densenet_model2.h5"
+#model = load_model(MODEL_PATH)
 
 # Define image size (must match training size)
 IMG_SIZE = 224  
