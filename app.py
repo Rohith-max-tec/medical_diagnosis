@@ -48,11 +48,11 @@ def predict_xray(img_path):
     predicted_class = class_labels[predicted_class_index]  # Get the corresponding class name
 
     if predicted_class == "Benign":
-        return "✅ Benign (Non-Cancerous)", confidence:.4f
+        return "✅ Benign (Non-Cancerous)", confidence
     elif predicted_class == "Malignant":
-        return "⚠️ Malignant (Cancerous)", confidence:.4f
+        return "⚠️ Malignant (Cancerous)", confidence
     elif predicted_class == "Normal":
-        return " Normal (You are healthy)", confidence:.4f
+        return " Normal (You are healthy)", confidence
         
     
     
