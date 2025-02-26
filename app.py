@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS to allow frontend requests
 
 # Load trained model
-MODEL_PATH = "xray_densenet_model6.h5"
+MODEL_PATH = "en_tokenizer.pkl"
 model = load_model(MODEL_PATH)
 
 # Image size (must match training size)
